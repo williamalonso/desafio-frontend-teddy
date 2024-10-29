@@ -1,20 +1,21 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { federation } from '@module-federation/vite'; // Use a importação nomeada
+import { federation } from '@module-federation/vite'; // Importa o plugin de federação de módulos
 
 export default defineConfig({
   plugins: [
-    react(),
+    react(), // Adiciona suporte para React
     federation({
-      name: 'mfe_login',
-      filename: 'remoteEntry.js',
+      name: 'mfe_login', // Nome do microfrontend
+      filename: 'remoteEntry.js', // Nome do arquivo de entrada remota
       exposes: {
-        './Login': './src/Login.tsx', // Exponha o componente de Login
+        './Login': './src/Login.tsx', // Expondo o componente Login
       },
-      shared: ['react', 'react-dom'], // Compartilhe as dependências com o shell
+      shared: ['react', 'react-dom'], // Compartilha as dependências com o shell
     }),
   ],
   server: {
-    port: 3001,
+    open: true,
+    port: 3001, // Porta em que o Vite será executado
   },
 });

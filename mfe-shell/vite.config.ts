@@ -14,6 +14,7 @@ export default defineConfig({
     }),
   ],
   server: {
+    open: true,
     port: 3000, // Porta onde o shell irá rodar
   },
 });
