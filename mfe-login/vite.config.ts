@@ -1,3 +1,4 @@
+//mfe-login/vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 // import { federation } from '@module-federation/vite'; // Importa o plugin de federação de módulos

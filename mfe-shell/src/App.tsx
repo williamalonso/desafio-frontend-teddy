@@ -1,4 +1,5 @@
-import React from 'react';
+// mfe-shell/src/App.tsx
+import React, { Suspense } from 'react';
 
 // Importando o componente Login do mfe-login
 const Login = React.lazy(() => import('mfe_login/Login'));
@@ -7,11 +8,10 @@ function App() {
   return (
     <div>
       <h1>Shell App</h1>
-      <Login />
-      {/* Usando Suspense para lidar com a importação assíncrona */}
-      {/* <Suspense fallback={<div>Loading...</div>}>
+      {/* Suspense para tratar o carregamento do componente */}
+      <Suspense fallback={<div>Carregando o componente de login...</div>}>
         <Login />
-      </Suspense> */}
+      </Suspense>
     </div>
   );
 }
