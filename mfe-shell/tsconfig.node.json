@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", // ou "src" se você preferir usar a pasta src como base
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "src/*" // Se você estiver usando "src" como base
+      ]
+    },
     "target": "esnext",
     "lib": ["ES2023"],
     "module": "esnext",
