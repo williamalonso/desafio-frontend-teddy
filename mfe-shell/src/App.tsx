@@ -1,5 +1,6 @@
 // mfe-shell/src/App.tsx
-import React, { Suspense } from 'react';
+// import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import Login from 'mfe_login/Login';
 
 // Importando o componente Login do mfe-login
