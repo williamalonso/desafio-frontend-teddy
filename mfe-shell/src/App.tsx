@@ -1,8 +1,9 @@
 // mfe-shell/src/App.tsx
 import React, { Suspense } from 'react';
+import Login from 'mfe_login/Login';
 
 // Importando o componente Login do mfe-login
-const Login = React.lazy(() => import('mfe_login/Login'));
+// const Login = React.lazy(() => import('mfe_login/Login'));
 
 function App() {
   return (
