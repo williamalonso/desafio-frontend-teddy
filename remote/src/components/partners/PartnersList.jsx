@@ -94,8 +94,8 @@ const PartnersList = () => {
                 <td>{partner.id}</td>
                 <td>{partner.name}</td>
                 <td>
-                  <button onClick={() => editPartner(partner)}>Editar</button>
-                  <button onClick={() => deletePartner(partner.id)}>Deletar</button>
+                  <button onClick={() => editPartner(partner)} style={{ backgroundColor: '#535bf2'}}>Editar</button>
+                  <button onClick={() => deletePartner(partner.id)} style={{ backgroundColor: 'red', marginLeft: '10px' }}>Deletar</button>
                 </td>
               </tr>
             ))}
