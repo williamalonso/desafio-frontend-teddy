@@ -24,9 +24,9 @@ export default defineConfig({
   },
   server: {
     cors: {
-      origin: true, // Permite qualquer origem
-      methods: ['GET', 'POST'], // Métodos permitidos
-      allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+      origin: "*", // Permite qualquer origem
+      methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"], // Métodos permitidos
+      allowedHeaders: ["X-Requested-With", "content-type", "Authorization"], // Cabeçalhos permitidos
     },
     // Se você estiver usando uma porta diferente, certifique-se de especificá-la aqui
     port: 5001,
