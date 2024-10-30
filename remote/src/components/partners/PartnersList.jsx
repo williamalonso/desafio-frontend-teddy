@@ -5,12 +5,15 @@ import AddPartnerModal from '../addModal/AddPartnerModal';
 import PartnerModal from '../editModal/PartnerModal';
 
 const PartnersList = () => {
-
   const [partners, setPartners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPartner, setCurrentPartner] = useState(null);
+
+  // Adicionando estados para paginação
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5); // Número de itens por página
 
   useEffect(() => {
     const fetchPartners = async () => {
@@ -35,9 +38,7 @@ const PartnersList = () => {
 
   const deletePartner = async (id) => {
     try {
-      // Fazendo a chamada para excluir o parceiro na API
       await axios.delete(`https://644060ba792fe886a88de1b9.mockapi.io/v1/test/partners/${id}`);
-      // Atualizando o estado para remover o parceiro da lista
       setPartners((prevPartners) => prevPartners.filter(partner => partner.id !== id));
     } catch (error) {
       console.error('Erro ao deletar parceiro:', error);
@@ -54,13 +55,21 @@ const PartnersList = () => {
     try {
       const response = await axios.put(`https://644060ba792fe886a88de1b9.mockapi.io/v1/test/partners/${updatedPartner.id}`, updatedPartner);
       setPartners((prevPartners) => prevPartners.map(partner => (partner.id === updatedPartner.id ? response.data : partner)));
-      setIsModalOpen(false); // Fecha o modal
-      setCurrentPartner(null); // Reseta o parceiro atual
+      setIsModalOpen(false);
+      setCurrentPartner(null);
     } catch (error) {
       console.error('Erro ao atualizar parceiro:', error);
       setError('Erro ao atualizar parceiro');
     }
   };
+
+  // Cálculo dos parceiros a serem exibidos na página atual
+  const indexOfLastPartner = currentPage * itemsPerPage; // Último índice do parceiro
+  const indexOfFirstPartner = indexOfLastPartner - itemsPerPage; // Primeiro índice do parceiro
+  const currentPartners = partners.slice(indexOfFirstPartner, indexOfLastPartner); // Seleciona os parceiros para a página atual
+
+  // Mudança de página
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (loading) {
     return <div>Carregando...</div>;
@@ -70,17 +79,20 @@ const PartnersList = () => {
     return <div>{error}</div>;
   }
 
+  // Total de páginas
+  const totalPages = Math.ceil(partners.length / itemsPerPage);
+
   return (
     <div>
       <h1>Lista de Parceiros</h1>
       <button onClick={() => {
-        setCurrentPartner(null); // Reseta o parceiro ao adicionar
-        setIsModalOpen(true); // Abre o modal para adicionar
+        setCurrentPartner(null);
+        setIsModalOpen(true);
       }}>
         Adicionar Parceiro
       </button>
       <div style={{ width: '100%', padding: '20px' }}>
-        <table style={{ width: '100%' }}>
+        <table style={{ width: '100%', tableLayout: 'fixed' }}>
           <thead>
             <tr>
               <th>ID</th>
@@ -89,7 +101,7 @@ const PartnersList = () => {
             </tr>
           </thead>
           <tbody>
-            {partners.map((partner) => (
+            {currentPartners.map((partner) => (
               <tr key={partner.id}>
                 <td>{partner.id}</td>
                 <td>{partner.name}</td>
@@ -101,7 +113,15 @@ const PartnersList = () => {
             ))}
           </tbody>
         </table>
+      </div>
 
+      {/* Controles de Paginação */}
+      <div style={{ marginTop: '20px' }}>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button key={index + 1} onClick={() => paginate(index + 1)} style={{ margin: '0 5px' }}>
+            {index + 1}
+          </button>
+        ))}
       </div>
 
       <AddPartnerModal 
@@ -111,12 +131,11 @@ const PartnersList = () => {
       />
 
       <PartnerModal 
-        isOpen={isModalOpen && currentPartner !== null} // Modal de editar
+        isOpen={isModalOpen && currentPartner !== null} 
         onRequestClose={() => setIsModalOpen(false)} 
         onUpdatePartner={updatePartner} 
-        partner={currentPartner} // Passa o parceiro atual para o modal
+        partner={currentPartner} 
       />
-
     </div>
   );
 };
