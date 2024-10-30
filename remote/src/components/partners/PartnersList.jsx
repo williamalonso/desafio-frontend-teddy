@@ -79,27 +79,30 @@ const PartnersList = () => {
       }}>
         Adicionar Parceiro
       </button>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {partners.map((partner) => (
-            <tr key={partner.id}>
-              <td>{partner.id}</td>
-              <td>{partner.name}</td>
-              <td>
-                <button onClick={() => editPartner(partner)}>Editar</button>
-                <button onClick={() => deletePartner(partner.id)}>Deletar</button>
-              </td>
+      <div style={{ width: '100%', padding: '20px' }}>
+        <table style={{ width: '100%' }}>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Ações</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {partners.map((partner) => (
+              <tr key={partner.id}>
+                <td>{partner.id}</td>
+                <td>{partner.name}</td>
+                <td>
+                  <button onClick={() => editPartner(partner)}>Editar</button>
+                  <button onClick={() => deletePartner(partner.id)}>Deletar</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+      </div>
 
       <AddPartnerModal 
         isOpen={isModalOpen && currentPartner === null} 
