@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  remote-app:
+    build: .
+    ports:
+      - "5001:80"  # Porta 80 do contêiner mapeada para 5001 no host
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
