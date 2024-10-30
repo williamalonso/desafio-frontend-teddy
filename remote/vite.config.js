@@ -21,4 +21,13 @@ export default defineConfig({
     minify: false,
     cssCodeSplit: false,
   },
+  server: {
+    cors: {
+      origin: true, // Permite qualquer origem
+      methods: ['GET', 'POST'], // Métodos permitidos
+      allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+    },
+    // Se você estiver usando uma porta diferente, certifique-se de especificá-la aqui
+    port: 5001,
+  },
 })
