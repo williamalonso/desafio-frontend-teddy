@@ -1,10 +1,16 @@
 // src/components/partners/PartnersList.jsx
 import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom'; // Importando useLocation e useNavigate
 import axios from 'axios';
 import AddPartnerModal from '../addModal/AddPartnerModal';
 import PartnerModal from '../editModal/PartnerModal';
 
 const PartnersList = () => {
+  const navigate = useNavigate(); // Para navegar e atualizar a URL
+  const location = useLocation(); // Para obter a localização atual
+  const queryParams = new URLSearchParams(location.search); // Obtendo os parâmetros de consulta
+  const initialPage = Number(queryParams.get('index')) || 1; // Pega o índice da URL ou 1 como padrão
+
   const [partners, setPartners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -12,7 +18,7 @@ const PartnersList = () => {
   const [currentPartner, setCurrentPartner] = useState(null);
 
   // Adicionando estados para paginação
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(initialPage); // Usar o valor inicial da URL
   const [itemsPerPage] = useState(5); // Número de itens por página
 
   useEffect(() => {
@@ -31,6 +37,11 @@ const PartnersList = () => {
 
     fetchPartners();
   }, []);
+
+  // Atualiza a página atual quando o valor da URL mudar
+  useEffect(() => {
+    setCurrentPage(initialPage);
+  }, [initialPage]);
 
   const addPartner = (newPartner) => {
     setPartners((prevPartners) => [...prevPartners, newPartner]);
@@ -69,7 +80,10 @@ const PartnersList = () => {
   const currentPartners = partners.slice(indexOfFirstPartner, indexOfLastPartner); // Seleciona os parceiros para a página atual
 
   // Mudança de página
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    navigate(`?index=${pageNumber}`); // Atualiza a URL com o índice da página
+  };
 
   if (loading) {
     return <div>Carregando...</div>;
