@@ -5,7 +5,7 @@ import Navbar from '../components/navbar/Navbar';
 const Home = () => {
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>Bem-vindo ao Aplicativo Host</h1>
+      <h1>Bem-vindo</h1>
       <Navbar />
 
       <div style={{ marginTop: '30px', maxWidth: '800px', margin: '0 auto', textAlign: 'left' }}>
