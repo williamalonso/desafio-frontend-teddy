@@ -4,6 +4,7 @@ import axios from 'axios';
 import AddPartnerModal from '../modal/AddPartnerModal';
 
 const PartnersList = () => {
+
   const [partners, setPartners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -30,6 +31,22 @@ const PartnersList = () => {
     setPartners((prevPartners) => [...prevPartners, newPartner]);
   };
 
+  const deletePartner = async (id) => {
+    try {
+      // Fazendo a chamada para excluir o parceiro na API
+      await axios.delete(`https://644060ba792fe886a88de1b9.mockapi.io/v1/test/partners/${id}`);
+      // Atualizando o estado para remover o parceiro da lista
+      setPartners((prevPartners) => prevPartners.filter(partner => partner.id !== id));
+    } catch (error) {
+      console.error('Erro ao deletar parceiro:', error);
+      setError('Erro ao deletar parceiro');
+    }
+  };
+
+  const editPartner = (id) => {
+    // Lógica para editar o parceiro
+    console.log('Editar parceiro com ID:', id);
+  };
 
   if (loading) {
     return <div>Carregando...</div>;
@@ -73,16 +90,6 @@ const PartnersList = () => {
 
     </div>
   );
-};
-
-const editPartner = (id) => {
-  // Lógica para editar o parceiro
-  console.log('Editar parceiro com ID:', id);
-};
-
-const deletePartner = (id) => {
-  // Lógica para deletar o parceiro
-  console.log('Deletar parceiro com ID:', id);
 };
 
 export default PartnersList;
