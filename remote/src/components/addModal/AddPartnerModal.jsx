@@ -1,4 +1,4 @@
-// src/components/AddPartnerModal.jsx
+// src/components/addModal/AddPartnerModal.jsx
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';

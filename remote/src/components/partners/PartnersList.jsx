@@ -1,7 +1,8 @@
-// src/components/PartnersList.jsx
+// src/components/partners/PartnersList.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import AddPartnerModal from '../modal/AddPartnerModal';
+import AddPartnerModal from '../addModal/AddPartnerModal';
+import PartnerModal from '../editModal/PartnerModal';
 
 const PartnersList = () => {
 
@@ -9,6 +10,7 @@ const PartnersList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPartner, setCurrentPartner] = useState(null);
 
   useEffect(() => {
     const fetchPartners = async () => {
@@ -43,9 +45,21 @@ const PartnersList = () => {
     }
   };
 
-  const editPartner = (id) => {
-    // Lógica para editar o parceiro
-    console.log('Editar parceiro com ID:', id);
+  const editPartner = (partner) => {
+    setCurrentPartner(partner);
+    setIsModalOpen(true);
+  };
+
+  const updatePartner = async (updatedPartner) => {
+    try {
+      const response = await axios.put(`https://644060ba792fe886a88de1b9.mockapi.io/v1/test/partners/${updatedPartner.id}`, updatedPartner);
+      setPartners((prevPartners) => prevPartners.map(partner => (partner.id === updatedPartner.id ? response.data : partner)));
+      setIsModalOpen(false); // Fecha o modal
+      setCurrentPartner(null); // Reseta o parceiro atual
+    } catch (error) {
+      console.error('Erro ao atualizar parceiro:', error);
+      setError('Erro ao atualizar parceiro');
+    }
   };
 
   if (loading) {
@@ -59,7 +73,12 @@ const PartnersList = () => {
   return (
     <div>
       <h1>Lista de Parceiros</h1>
-      <button onClick={() => setIsModalOpen(true)}>Adicionar Parceiro</button>
+      <button onClick={() => {
+        setCurrentPartner(null); // Reseta o parceiro ao adicionar
+        setIsModalOpen(true); // Abre o modal para adicionar
+      }}>
+        Adicionar Parceiro
+      </button>
       <table>
         <thead>
           <tr>
@@ -74,7 +93,7 @@ const PartnersList = () => {
               <td>{partner.id}</td>
               <td>{partner.name}</td>
               <td>
-                <button onClick={() => editPartner(partner.id)}>Editar</button>
+                <button onClick={() => editPartner(partner)}>Editar</button>
                 <button onClick={() => deletePartner(partner.id)}>Deletar</button>
               </td>
             </tr>
@@ -83,9 +102,16 @@ const PartnersList = () => {
       </table>
 
       <AddPartnerModal 
-        isOpen={isModalOpen} 
+        isOpen={isModalOpen && currentPartner === null} 
         onRequestClose={() => setIsModalOpen(false)} 
         onAddPartner={addPartner} 
+      />
+
+      <PartnerModal 
+        isOpen={isModalOpen && currentPartner !== null} // Modal de editar
+        onRequestClose={() => setIsModalOpen(false)} 
+        onUpdatePartner={updatePartner} 
+        partner={currentPartner} // Passa o parceiro atual para o modal
       />
 
     </div>

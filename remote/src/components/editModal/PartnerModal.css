@@ -1,0 +1,50 @@
+/* src/components/editModal/PartnerModal.css */
+.modal {
+  position: fixed; /* Fixa o modal na tela */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro semi-transparente */
+  display: flex; /* Usar flexbox para centralizar o conteúdo */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Garantir que o modal fique acima de outros elementos */
+}
+
+.modal-content {
+  background-color: #1a1a1a; /* Cor de fundo do modal */
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px; /* Largura do modal */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #ffffff; /* Cor do texto */
+}
+
+.close-button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5em;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.modal-footer button {
+  margin-left: 10px; /* Espaçamento entre os botões */
+}
