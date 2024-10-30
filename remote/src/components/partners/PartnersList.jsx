@@ -6,6 +6,7 @@ import AddPartnerModal from '../addModal/AddPartnerModal';
 import PartnerModal from '../editModal/PartnerModal';
 
 const PartnersList = () => {
+  
   const navigate = useNavigate(); // Para navegar e atualizar a URL
   const location = useLocation(); // Para obter a localização atual
   const queryParams = new URLSearchParams(location.search); // Obtendo os parâmetros de consulta

@@ -2,13 +2,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Button from "remoteApp/Button";
+// import Button from "remoteApp/Button";
 
 const Home = () => {
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
 
-      <Button />
+      {/* <Button /> */}
       <h1>Bem-vindo ao Aplicativo Host</h1>
       <p>Use os links abaixo para navegar:</p>
 
