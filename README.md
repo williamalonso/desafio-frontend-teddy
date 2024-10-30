@@ -25,3 +25,8 @@ Ou no host, faça o comando a seguir e ele automaticamente executa o container d
 ```
 docker-compose up --build -d
 ```
+
+apos isso, abra as urls:
+http://localhost:5001
+e
+http://localhost:5000
