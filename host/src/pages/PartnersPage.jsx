@@ -1,8 +1,7 @@
 // src/pages/PartnersPage.jsx
 import React, { Suspense } from 'react';
 import Navbar from '../components/navbar/Navbar';
-
-import PartnersList from "remoteApp/PartnersList";
+import PartnerComponent from '../components/partners/PartnerComponent';
 
 const PartnersPage = () => {
   return (
@@ -10,9 +9,7 @@ const PartnersPage = () => {
       <h1>Gestão de Parceiros</h1>
       <Navbar />
       <div style={{ marginTop: '50px' }}>
-        <Suspense fallback={<div>Carregando lista de parceiros...</div>}>
-          <PartnersList />
-        </Suspense>
+        <PartnerComponent />
       </div>
     </div>
   );
