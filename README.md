@@ -6,7 +6,7 @@ Esse projeto é um desafio de frontend usando micro-frontend
 
 A versão React usada é a `^18`.
 
-Para rodar o docker,navegue até a pasta do projeto e execute:
+Para rodar o docker, navegue até a pasta do projeto e execute:
 
 ```
 docker build -t remote-app .
