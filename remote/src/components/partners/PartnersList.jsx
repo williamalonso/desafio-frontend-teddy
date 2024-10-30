@@ -1,32 +1,23 @@
 // src/components/partners/PartnersList.jsx
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // Importando useLocation e useNavigate
 import axios from 'axios';
 import AddPartnerModal from '../addModal/AddPartnerModal';
 import PartnerModal from '../editModal/PartnerModal';
 
 const PartnersList = () => {
-  
-  const navigate = useNavigate(); // Para navegar e atualizar a URL
-  const location = useLocation(); // Para obter a localização atual
-  const queryParams = new URLSearchParams(location.search); // Obtendo os parâmetros de consulta
-  const initialPage = Number(queryParams.get('index')) || 1; // Pega o índice da URL ou 1 como padrão
 
   const [partners, setPartners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPartner, setCurrentPartner] = useState(null);
-
-  // Adicionando estados para paginação
-  const [currentPage, setCurrentPage] = useState(initialPage); // Usar o valor inicial da URL
+  const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5); // Número de itens por página
 
   useEffect(() => {
     const fetchPartners = async () => {
       try {
         const response = await axios.get('https://644060ba792fe886a88de1b9.mockapi.io/v1/test/partners');
-        console.log('Partners:', response.data);
         setPartners(response.data);
       } catch (error) {
         setError('Erro ao buscar parceiros');
@@ -38,11 +29,6 @@ const PartnersList = () => {
 
     fetchPartners();
   }, []);
-
-  // Atualiza a página atual quando o valor da URL mudar
-  useEffect(() => {
-    setCurrentPage(initialPage);
-  }, [initialPage]);
 
   const addPartner = (newPartner) => {
     setPartners((prevPartners) => [...prevPartners, newPartner]);
@@ -80,11 +66,8 @@ const PartnersList = () => {
   const indexOfFirstPartner = indexOfLastPartner - itemsPerPage; // Primeiro índice do parceiro
   const currentPartners = partners.slice(indexOfFirstPartner, indexOfLastPartner); // Seleciona os parceiros para a página atual
 
-  // Mudança de página
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    navigate(`?index=${pageNumber}`); // Atualiza a URL com o índice da página
-  };
+  // Total de páginas
+  const totalPages = Math.ceil(partners.length / itemsPerPage);
 
   if (loading) {
     return <div>Carregando...</div>;
@@ -93,9 +76,6 @@ const PartnersList = () => {
   if (error) {
     return <div>{error}</div>;
   }
-
-  // Total de páginas
-  const totalPages = Math.ceil(partners.length / itemsPerPage);
 
   return (
     <div>
@@ -133,7 +113,11 @@ const PartnersList = () => {
       {/* Controles de Paginação */}
       <div style={{ marginTop: '20px' }}>
         {Array.from({ length: totalPages }, (_, index) => (
-          <button key={index + 1} onClick={() => paginate(index + 1)} style={{ margin: '0 5px' }}>
+          <button 
+            key={index + 1} 
+            onClick={() => setCurrentPage(index + 1)} 
+            style={{ margin: '0 5px', backgroundColor: currentPage === index + 1 ? '#ddd' : '#fff' }}
+          >
             {index + 1}
           </button>
         ))}
