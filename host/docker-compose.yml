@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  remote:  # Definição do serviço remote
+    build:
+      context: ../remote  # Caminho para o diretório do MFE remote
+      dockerfile: Dockerfile  # Nome do Dockerfile, se for diferente
+    ports:
+      - "5001:80"  # Mapeamento de porta
+
+  host:  # Definição do serviço host
+    build: .
+    ports:
+      - "5000:80"  # Mapeamento de porta
+    depends_on:
+      - remote  # Garantindo que o serviço remote esteja disponível antes de iniciar o host

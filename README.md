@@ -19,3 +19,9 @@ Execute o seguinte comando para rodar com docker-compose:
 ```
 docker-compose up --build
 ```
+
+Ou no host, faça o comando a seguir e ele automaticamente executa o container do mfe remote:
+
+```
+docker-compose up --build -d
+```
