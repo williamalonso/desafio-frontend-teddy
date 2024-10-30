@@ -4,7 +4,7 @@ import axios from 'axios';
 import AddPartnerModal from '../addModal/AddPartnerModal';
 import PartnerModal from '../editModal/PartnerModal';
 
-const PartnersList = ({ currentPage, onPageChange }) => {
+const PartnersList = ({ currentPage = 1, onPageChange = () => {} }) => {
   
   const [partners, setPartners] = useState([]);
   const [loading, setLoading] = useState(true);
