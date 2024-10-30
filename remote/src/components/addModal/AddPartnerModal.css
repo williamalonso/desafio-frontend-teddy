@@ -45,14 +45,39 @@
   color: rgba(255, 255, 255, 0.5); /* Cor do placeholder em cinza claro */
 }
 
-.modal-content button {
-  margin-right: 10px; /* Margem direita entre os botões */
-  background-color: #646cff; /* Cor de fundo dos botões */
-  color: white; /* Cor do texto dos botões */
+.button-container {
+  display: flex; /* Usando flexbox para alinhar os botões */
+  justify-content: flex-end; /* Alinha os botões à direita */
+  margin-top: 20px; /* Margem superior para espaçamento */
 }
 
-.modal-content button:hover {
-  background-color: #535bf2; /* Cor de fundo ao passar o mouse */
+.add-button, .close-button {
+  margin-right: 10px; /* Margem direita entre os botões */
+  width: 110px; /* Largura dos botões */
+  height: 42px; /* Altura dos botões */
+  display: flex; /* Usar flex para centralizar texto */
+  justify-content: center; /* Centraliza o texto horizontalmente */
+  align-items: center; /* Centraliza o texto verticalmente */
+  border-radius: 4px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+}
+
+.add-button {
+  background-color: #646cff; /* Cor de fundo do botão de adicionar */
+  color: white; /* Cor do texto do botão */
+}
+
+.button-container .close-button {
+  background-color: red; /* Cor de fundo do botão de fechar */
+  color: white; /* Cor do texto do botão */
+}
+
+.add-button:hover {
+  background-color: #535bf2; /* Cor de fundo ao passar o mouse no botão de adicionar */
+}
+
+.close-button:hover {
+  background-color: darkred; /* Cor de fundo ao passar o mouse no botão de fechar */
 }
 
 .modal-content p {

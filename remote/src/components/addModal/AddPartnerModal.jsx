@@ -7,6 +7,7 @@ import './AddPartnerModal.css';
 Modal.setAppElement('#root');
 
 const AddPartnerModal = ({ isOpen, onRequestClose, onAddPartner }) => {
+
   const [name, setName] = useState('');
   const [error, setError] = useState('');
 
@@ -45,8 +46,10 @@ const AddPartnerModal = ({ isOpen, onRequestClose, onAddPartner }) => {
           />
         </div>
         {error && <p>{error}</p>}
-        <button type="submit">Adicionar</button>
-        <button type="button" onClick={onRequestClose}>Fechar</button>
+        <div className="button-container">
+          <div className="add-button" onClick={handleSubmit}>Adicionar</div>
+          <div className="close-button" onClick={onRequestClose}>Fechar</div>
+        </div>
       </form>
     </Modal>
   );
