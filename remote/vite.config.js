@@ -11,6 +11,7 @@ export default defineConfig({
       filename: "remoteEntry.js",
       exposes: {
         "./Button": "./src/components/button/Button",
+        "./PartnersList": "./src/components/partners/PartnersList",
       },
       shared: ["react", "react-dom"],
     }),
