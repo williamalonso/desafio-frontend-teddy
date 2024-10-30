@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import "./Button.css";
 
 export const Button = () => {
   const [state, setState] = useState(0);
