@@ -1,8 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// src/App.jsx
+import { BrowserRouter as Router } from 'react-router-dom';
 import { useState } from 'react';
 import './App.css';
 import Button from './components/button/Button';
-import PartnersList from './components/partners/PartnersList';
+import AppRoutes from './routes/AppRoutes'; // Importando o componente de rotas
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,11 +19,8 @@ function App() {
           </button>
         </div>
 
-        {/* Definindo as rotas */}
-        <Routes>
-          <Route path="/" element={<PartnersList />} /> {/* Rota principal */}
-          {/* Adicione outras rotas conforme necessário */}
-        </Routes>
+        {/* Usando o componente de rotas */}
+        <AppRoutes />
       </div>
     </Router>
   );
