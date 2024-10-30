@@ -1,9 +1,18 @@
-import { Link } from 'react-router-dom';
-
-import Button from "remoteApp/Button";
-import PartnersList from "remoteApp/PartnersList";
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Remover usuário do localStorage e dos cookies
+    localStorage.removeItem('user');
+    document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+    // Redirecionar para a página de login
+    navigate('/login');
+  };
+
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
       <p>Use os links abaixo para navegar:</p>
@@ -17,6 +26,12 @@ const Navbar = () => {
             Ver Lista de Parceiros
           </button>
         </Link>
+        <button 
+          onClick={handleLogout} 
+          style={{ padding: '10px 20px', marginLeft: '10px', backgroundColor: 'red', color: 'white' }}
+        >
+          Sair
+        </button>
       </div>
       
     </div>
