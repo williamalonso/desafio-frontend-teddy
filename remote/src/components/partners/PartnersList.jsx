@@ -1,11 +1,13 @@
 // src/components/PartnersList.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import AddPartnerModal from '../modal/AddPartnerModal';
 
 const PartnersList = () => {
   const [partners, setPartners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchPartners = async () => {
@@ -24,6 +26,11 @@ const PartnersList = () => {
     fetchPartners();
   }, []);
 
+  const addPartner = (newPartner) => {
+    setPartners((prevPartners) => [...prevPartners, newPartner]);
+  };
+
+
   if (loading) {
     return <div>Carregando...</div>;
   }
@@ -35,6 +42,7 @@ const PartnersList = () => {
   return (
     <div>
       <h1>Lista de Parceiros</h1>
+      <button onClick={() => setIsModalOpen(true)}>Adicionar Parceiro</button>
       <table>
         <thead>
           <tr>
@@ -56,6 +64,13 @@ const PartnersList = () => {
           ))}
         </tbody>
       </table>
+
+      <AddPartnerModal 
+        isOpen={isModalOpen} 
+        onRequestClose={() => setIsModalOpen(false)} 
+        onAddPartner={addPartner} 
+      />
+
     </div>
   );
 };
