@@ -5,6 +5,7 @@ import AddPartnerModal from '../addModal/AddPartnerModal';
 import PartnerModal from '../editModal/PartnerModal';
 
 const PartnersList = () => {
+
   const [partners, setPartners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
