@@ -1,3 +1,4 @@
+// src/components/navbar/Navbar.jsx
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
@@ -19,27 +20,29 @@ const Navbar = () => {
   });
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <p>Use os links abaixo para navegar:</p>
+    <nav>
+      <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <p>Use os links abaixo para navegar:</p>
 
-      <div style={{ marginTop: '20px' }}>
-        <Link to="/">
-          <button style={getButtonStyle('/')}>Página Inicial</button>
-        </Link>
-        <Link to="/partners">
-          <button style={getButtonStyle('/partners')}>Ver Lista de Parceiros</button>
-        </Link>
-        <Link to="/companies">
-          <button style={getButtonStyle('/companies')}>Ver Lista de Empresas</button>
-        </Link>
-        <button 
-          onClick={handleLogout} 
-          style={{ padding: '10px 20px', marginLeft: '10px', backgroundColor: 'red', color: 'white' }}
-        >
-          Sair
-        </button>
+        <div style={{ marginTop: '20px' }}>
+          <Link to="/">
+            <button style={getButtonStyle('/')}>Página Inicial</button>
+          </Link>
+          <Link to="/partners">
+            <button style={getButtonStyle('/partners')}>Ver Lista de Parceiros</button>
+          </Link>
+          <Link to="/companies">
+            <button style={getButtonStyle('/companies')}>Ver Lista de Empresas</button>
+          </Link>
+          <button 
+            onClick={handleLogout} 
+            style={{ padding: '10px 20px', marginLeft: '10px', backgroundColor: 'red', color: 'white' }}
+          >
+            Sair
+          </button>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 }
 
