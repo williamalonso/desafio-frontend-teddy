@@ -2,6 +2,7 @@
 import './App.css';
 import Button from './components/button/Button';
 import PartnersList from './components/partners/PartnersList';
+import CompaniesList from './components/companies/CompaniesList';
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
       <h1>Remote Application</h1>
       <Button />
       <PartnersList />
+      <CompaniesList />
     </div>
   );
 }
