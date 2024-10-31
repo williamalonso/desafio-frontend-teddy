@@ -63,7 +63,7 @@ npm run dev
 
 Este projeto possui um sistema de testes implementado com o Vitest. Para rodar os testes, siga os passos abaixo:
 
-1 - Navegue até o diretório onde está o projeto.
+1 - Navegue até o diretório "host".
 
 2 - Execute o comando:
 ```
