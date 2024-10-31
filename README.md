@@ -1,8 +1,12 @@
 # Projeto de Desafio Frontend com Micro-Frontend
 
+
+
 ### 🤔 Sobre o Projeto?
 
 Este projeto é um desafio de frontend utilizando a arquitetura de micro-frontends. O objetivo é demonstrar como diferentes partes de uma aplicação podem ser desenvolvidas, implantadas e executadas de forma independente.
+
+
 
 ### 🙅 Tecnologias usadas
 
@@ -10,9 +14,12 @@ Este projeto é um desafio de frontend utilizando a arquitetura de micro-fronten
 - **Vite**: `^5.4.9`
 - **[vite-plugin-federation](https://github.com/originjs/vite-plugin-federation)**: `^1.3.6` - Plugin para micro-frontends usando Vite.
 
+
+
 ### 🚀 Deploy
 
 Você pode visualizar o deploy do projeto [aqui](URL_DO_DEPLOY).
+
 
 
 ### 🐳 Executando o Projeto com Docker
@@ -22,6 +29,8 @@ O projeto está configurado para rodar em Docker. Para iniciar os serviços, bas
 ```bash
   docker-compose up --build
 ```
+
+
 
 ### 💻 Rodando o App Localmente
 
@@ -38,6 +47,8 @@ npm run build && npm run serve
 ```
 npm run dev
 ```
+
+
 
 ### 🌐 Acessando o Aplicativo
 
