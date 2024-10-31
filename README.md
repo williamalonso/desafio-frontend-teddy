@@ -28,7 +28,7 @@ Na imagem acima, a área em vermelho foi desenvolvida no diretório "remote", en
 
 ## 🚀 Deploy
 
-Você pode visualizar o deploy do projeto [aqui](URL_DO_DEPLOY).
+Você pode visualizar o deploy do projeto [aqui](https://desafio-frontend-teddy.vercel.app/).
 
 
 
