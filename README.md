@@ -23,6 +23,7 @@ Na imagem acima, a área em vermelho foi desenvolvida no diretório "remote", en
 - **React**: `^18.3.1`
 - **Vite**: `^5.4.9`
 - **[vite-plugin-federation](https://github.com/originjs/vite-plugin-federation)**: `^1.3.6` - Plugin para micro-frontends usando Vite.
+- **Vitest**: `^2.1.4`
 
 
 
@@ -58,6 +59,16 @@ npm run build && npm run serve
 npm run dev
 ```
 
+## 🧪 Executando os Testes
+
+Este projeto possui um sistema de testes implementado com o Vitest. Para rodar os testes, siga os passos abaixo:
+
+1 - Navegue até o diretório onde está o projeto.
+
+2 - Execute o comando:
+```
+npm run test
+```
 
 
 ## 🌐 Acessando o Aplicativo
