@@ -17,7 +17,7 @@ Você pode visualizar o deploy do projeto [aqui](URL_DO_DEPLOY).
 
 ### 🐳 Executando o Projeto com Docker
 
-O projeto está configurado para rodar em Docker. Para iniciar os serviços, basta executar o comando abaixo na pasta raiz do MFE pai(host):
+O projeto está configurado para rodar em Docker. Para iniciar os serviços, basta executar o comando abaixo na pasta raiz do MFE pai (pasta host):
 
 ```bash
   docker-compose up --build
@@ -27,13 +27,13 @@ O projeto está configurado para rodar em Docker. Para iniciar os serviços, bas
 
 Para executar o aplicativo em sua máquina local, siga os passos abaixo:
 
-1 . No MFE filho, execute:
+1 . No MFE filho (pasta remote), execute:
 
 ```
 npm run build && npm run serve
 ```
 
-2 . Em seguida, no MFE pai, execute:
+2 . Em seguida, no MFE pai (pasta host), execute:
 
 ```
 npm run dev
@@ -43,5 +43,10 @@ npm run dev
 
 Após executar os comandos acima, você pode acessar as seguintes URLs no seu navegador:
 
-http://localhost:5001 (MFE filho)
-http://localhost:5000 (MFE pai)
+- Se estiver rodando localmente:
+  - [http://localhost:5001](http://localhost:5001) (MFE filho)
+  - [http://localhost:5173](http://localhost:5173) (MFE pai)
+
+- Se estiver rodando no Docker:
+  - [http://localhost:5001](http://localhost:5001) (MFE filho)
+  - [http://localhost:5000](http://localhost:5000) (MFE pai)
