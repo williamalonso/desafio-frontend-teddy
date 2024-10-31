@@ -7,6 +7,7 @@ import PrivateRoute from '../components/privateRouter/PrivateRoute';
 import Home from '../pages/Home';
 import LoginPage from '../pages/LoginPage';
 import PartnersPage from '../pages/PartnersPage';
+import CompaniesPage from '../pages/CompaniesPage';
 
 const AppRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const AppRoutes = () => {
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />
           <Route path="/partners" element={<PartnersPage />} />
+          <Route path="/companies" element={<CompaniesPage />} />
         </Route>
 
         {/* Rota para 404 caso a rota não seja encontrada */}
