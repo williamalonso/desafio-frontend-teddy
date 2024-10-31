@@ -130,7 +130,7 @@ const PartnersList = ({ currentPage = 1, onPageChange = () => {} }) => {
             onClick={() => onPageChange(index + 1)} // Chama o callback ao mudar de página
             style={{
               margin: '0 5px',
-              backgroundColor: 'black',
+              backgroundColor: currentPage === index + 1 ? 'blue' : 'black',
             }}
           >
             {index + 1}

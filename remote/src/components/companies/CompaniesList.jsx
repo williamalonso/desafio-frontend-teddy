@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import AddCompanyModal from '../addModal/AddCompanyModal';
+import CompanyModal from '../editModal/CompanyModal';
 
-const CompaniesList = () => {
+const CompaniesList = ({ currentPage = 1, onPageChange = () => {} }) => {
+
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentCompany, setCurrentCompany] = useState(null);
   const [itemsPerPage] = useState(5); // Número de itens por página
 
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const response = await axios.get('https://655cf25525b76d9884fe3153.mockapi.io/v1/external-companies'); // Substitua pela URL real
+        const response = await axios.get('https://655cf25525b76d9884fe3153.mockapi.io/v1/external-companies');
         setCompanies(response.data);
       } catch (error) {
         setError('Erro ao buscar empresas');
@@ -20,7 +24,6 @@ const CompaniesList = () => {
         setLoading(false);
       }
     };
-
     fetchCompanies();
   }, []);
 
@@ -34,8 +37,32 @@ const CompaniesList = () => {
     }
   };
 
-  const editCompany = (id) => {
-    alert(`Função de editar ainda não implementada para empresa com ID: ${id}`);
+  const editCompany = (company) => {
+    setCurrentCompany(company);
+    setIsModalOpen(true);
+  };
+
+  const addCompany = (newCompany) => {
+    setCompanies((prevCompanies) => [...prevCompanies, newCompany]);
+  };
+
+  const updateCompany = async (updatedCompany) => {
+    try {
+      const response = await axios.put(
+        `https://655cf25525b76d9884fe3153.mockapi.io/v1/external-companies/${updatedCompany.id}`,
+        updatedCompany
+      );
+      setCompanies((prevCompanies) =>
+        prevCompanies.map((company) =>
+          company.id === updatedCompany.id ? response.data : company
+        )
+      );
+      setIsModalOpen(false);
+      setCurrentCompany(null);
+    } catch (error) {
+      console.error('Erro ao atualizar empresa:', error);
+      setError('Erro ao atualizar empresa');
+    }
   };
 
   const indexOfLastCompany = currentPage * itemsPerPage;
@@ -44,17 +71,20 @@ const CompaniesList = () => {
 
   const totalPages = Math.ceil(companies.length / itemsPerPage);
 
-  if (loading) {
-    return <div>Carregando...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+  if (loading) return <div>Carregando...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div>
       <h1>Lista de Empresas Externas</h1>
+      <button
+        onClick={() => {
+          setCurrentCompany(null);
+          setIsModalOpen(true);
+        }}
+      >
+        Adicionar Empresa
+      </button>
       <div style={{ width: '100%', padding: '20px' }}>
         <table style={{ width: '100%', tableLayout: 'fixed' }}>
           <thead>
@@ -70,14 +100,14 @@ const CompaniesList = () => {
                 <td>{company.id}</td>
                 <td>{company.companyName}</td>
                 <td>
-                  <button 
-                    onClick={() => editCompany(company.id)} 
+                  <button
+                    onClick={() => editCompany(company)}
                     style={{ backgroundColor: '#535bf2', marginRight: '10px' }}
                   >
                     Editar
                   </button>
-                  <button 
-                    onClick={() => deleteCompany(company.id)} 
+                  <button
+                    onClick={() => deleteCompany(company.id)}
                     style={{ backgroundColor: 'red' }}
                   >
                     Deletar
@@ -89,17 +119,34 @@ const CompaniesList = () => {
         </table>
       </div>
 
+      {/* Controles de Paginação */}
       <div style={{ marginTop: '20px' }}>
         {Array.from({ length: totalPages }, (_, index) => (
-          <button 
-            key={index + 1} 
-            onClick={() => setCurrentPage(index + 1)} 
-            style={{ margin: '0 5px', backgroundColor: 'black' }}
+          <button
+            key={index + 1}
+            onClick={() => onPageChange(index + 1)}
+            style={{
+              margin: '0 5px',
+              backgroundColor: currentPage === index + 1 ? 'blue' : 'black',
+            }}
           >
             {index + 1}
           </button>
         ))}
       </div>
+
+      <AddCompanyModal
+        isOpen={isModalOpen && currentCompany === null}
+        onRequestClose={() => setIsModalOpen(false)}
+        onAddCompany={addCompany}
+      />
+
+      <CompanyModal
+        isOpen={isModalOpen && currentCompany !== null}
+        onRequestClose={() => setIsModalOpen(false)}
+        onUpdateCompany={updateCompany}
+        company={currentCompany}
+      />
     </div>
   );
 };
