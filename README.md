@@ -8,7 +8,7 @@ Este projeto é um desafio de frontend utilizando a arquitetura de micro-fronten
 
 - **React**: `^18.3.1`
 - **Vite**: `^5.4.9`
-- **vite-plugin-federation**: `^1.3.6` - Plugin para micro-frontends usando Vite.
+- **[vite-plugin-federation](https://github.com/originjs/vite-plugin-federation)**: `^1.3.6` - Plugin para micro-frontends usando Vite.
 
 ### 🚀 Deploy
 
