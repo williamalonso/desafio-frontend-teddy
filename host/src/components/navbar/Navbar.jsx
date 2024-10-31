@@ -1,17 +1,22 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-
+  
   const navigate = useNavigate();
+  const location = useLocation(); // Obter a rota atual
 
   const handleLogout = () => {
-    // Remover usuário do localStorage e dos cookies
     localStorage.removeItem('user');
     document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-
-    // Redirecionar para a página de login
     navigate('/login');
   };
+
+  const getButtonStyle = (path) => ({
+    padding: '10px 20px',
+    marginLeft: path === '/' ? '0' : '10px', // Remove margem no primeiro botão
+    backgroundColor: location.pathname === path ? '#535bf2' : '#fff', // Fundo diferenciado para a rota ativa
+    color: location.pathname === path ? '#fff' : '#000', // Cor do texto
+  });
 
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
@@ -19,12 +24,13 @@ const Navbar = () => {
 
       <div style={{ marginTop: '20px' }}>
         <Link to="/">
-          <button style={{ padding: '10px 20px' }}>Página Inicial</button>
+          <button style={getButtonStyle('/')}>Página Inicial</button>
         </Link>
         <Link to="/partners">
-          <button style={{ padding: '10px 20px', marginLeft: '10px' }}>
-            Ver Lista de Parceiros
-          </button>
+          <button style={getButtonStyle('/partners')}>Ver Lista de Parceiros</button>
+        </Link>
+        <Link to="/companies">
+          <button style={getButtonStyle('/companies')}>Ver Lista de Empresas</button>
         </Link>
         <button 
           onClick={handleLogout} 
@@ -33,9 +39,8 @@ const Navbar = () => {
           Sair
         </button>
       </div>
-      
     </div>
   );
 }
- 
+
 export default Navbar;

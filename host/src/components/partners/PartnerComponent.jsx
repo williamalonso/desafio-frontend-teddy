@@ -12,7 +12,6 @@ const PartnerComponent = () => {
   // Sincroniza a URL sempre que a página atual muda
   useEffect(() => {
     setSearchParams({ index: currentPage });
-    console.log('Current page:', currentPage);
   }, [currentPage, setSearchParams]);
 
   const handlePageChange = (page) => {
