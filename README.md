@@ -1,10 +1,20 @@
-# Projeto de Desafio Frontend com Micro-Frontend
+<div align="center">
+  <h1>Projeto de Micro-Frontend</h1>
+</div>
 
-
+<div align="center">
+  <img src="/host/public/home.png" alt"Home page" title="Home page" width="600" />
+</div>
 
 ## 🤔 Sobre o Projeto?
 
 Este projeto é um desafio de frontend utilizando a arquitetura de micro-frontends. O objetivo é demonstrar como diferentes partes de uma aplicação podem ser desenvolvidas, implantadas e executadas de forma independente.
+
+
+
+## 🔍 Como Funciona?
+
+Na imagem acima, a área em vermelho foi desenvolvida no diretório "remote", enquanto a área azul corresponde ao diretório "host". Essas áreas se comunicam através da passagem de propriedades (props) de um micro-frontend para o outro.
 
 
 
