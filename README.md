@@ -1,32 +1,47 @@
+# Projeto de Desafio Frontend com Micro-Frontend
+
 ### 🤔 Sobre o Projeto?
 
-Esse projeto é um desafio de frontend usando micro-frontend
+Este projeto é um desafio de frontend utilizando a arquitetura de micro-frontends. O objetivo é demonstrar como diferentes partes de uma aplicação podem ser desenvolvidas, implantadas e executadas de forma independente.
 
-## 🙅 Instalações e usos
+### 🙅 Tecnologias usadas
 
-A versão React usada é a `^18`.
+- **React**: `^18.3.1`
+- **Vite**: `^5.4.9`
+- **vite-plugin-federation**: `^1.3.6` - Plugin para micro-frontends usando Vite.
 
-Para rodar o docker, navegue até a pasta do projeto e execute:
+### 🚀 Deploy
 
-```
-docker build -t remote-app .
-```
+Você pode visualizar o deploy do projeto [aqui](URL_DO_DEPLOY).
 
-Isso irá construir a imagem do container.
 
-Execute o seguinte comando para rodar com docker-compose:
+### 🐳 Executando o Projeto com Docker
 
-```
-docker-compose up --build
-```
+O projeto está configurado para rodar em Docker. Para iniciar os serviços, basta executar o comando abaixo na pasta raiz do MFE pai(host):
 
-Ou no host, faça o comando a seguir e ele automaticamente executa o container do mfe remote:
-
-```
-docker-compose up --build -d
+```bash
+  docker-compose up --build
 ```
 
-apos isso, abra as urls:
-http://localhost:5001
-e
-http://localhost:5000
+### 💻 Rodando o App Localmente
+
+Para executar o aplicativo em sua máquina local, siga os passos abaixo:
+
+1 . No MFE filho, execute:
+
+```
+npm run build && npm run serve
+```
+
+2 . Em seguida, no MFE pai, execute:
+
+```
+npm run dev
+```
+
+### 🌐 Acessando o Aplicativo
+
+Após executar os comandos acima, você pode acessar as seguintes URLs no seu navegador:
+
+http://localhost:5001 (MFE filho)
+http://localhost:5000 (MFE pai)
