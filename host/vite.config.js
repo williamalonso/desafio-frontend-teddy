@@ -9,7 +9,7 @@ export default defineConfig({
     federation({
       name: "host_app",
       remotes: {
-        remoteApp: "http://localhost:5001/assets/remoteEntry.js",
+        remoteApp: import.meta.env.VITE_REMOTE_APP_URL,
       },
       shared: ["react", "react-dom"],
     })
