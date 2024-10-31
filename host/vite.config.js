@@ -22,4 +22,9 @@ export default defineConfig({
     minify: false,
     cssCodeSplit: false,
   },
+  test: {
+    globals: true,  // permite o uso de variáveis globais nos testes, como describe e it
+    environment: 'jsdom',  // ambiente DOM simulado para testes de frontend
+    setupFiles: './src/setupTests.js',  // arquivo de configuração de testes, opcional
+  }
 })

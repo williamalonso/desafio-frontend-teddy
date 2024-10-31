@@ -1,3 +1,4 @@
+// src/components/navbar/Navbar.jsx
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
