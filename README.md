@@ -27,7 +27,7 @@ Este projeto foi desenvolvido como parte de um desafio técnico e inclui as segu
 
 ### Funcionalidade de Compartilhamento de Dados
 
-- **Compartilhamento de Tabela**: A aplicação permite compartilhar links de páginas específicas de uma tabela. Por exemplo, ao compartilhar um link da página 3 de uma tabela paginada, o destinatário acessará diretamente essa página. Caso o usuário não esteja logado, será redirecionado para a página de login.
+- **Compartilhamento de Tabela**: A aplicação permite compartilhar links de páginas específicas de uma tabela. Por exemplo, ao compartilhar um link da página 3 de uma tabela paginada, o destinatário acessará diretamente essa página. Caso o usuário não esteja logado, será redirecionado para a página de login e, em seguida, para a página compartilhada.
 
 ## 🔍 Como Funciona?
 

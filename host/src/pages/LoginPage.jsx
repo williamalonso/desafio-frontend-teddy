@@ -1,20 +1,26 @@
 // src/pages/LoginPage.jsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   
   const [username, setUsername] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogin = () => {
+
+    const redirectPath = localStorage.getItem('redirectPath');
+    const targetPath = redirectPath ? redirectPath : '/';
+
     if (rememberMe) {
       document.cookie = `user=${username}; path=/; max-age=${60 * 60 * 24 * 30}`; // Armazena no cookie por 30 dias
     } else {
       localStorage.setItem('user', username); // Armazena no localStorage
     }
-    navigate('/'); // Redireciona para a página inicial
+    
+    navigate(targetPath);
   };
 
   return (
