@@ -1,7 +1,21 @@
 // src/components/navbar/Navbar.test.jsx
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent  } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom'; // Para simular o roteamento
 import Navbar from './Navbar'; // Importa o componente Navbar
+import '@testing-library/jest-dom';
+import { BrowserRouter } from 'react-router-dom';
+
+// Mock do useNavigate do react-router-dom
+import { useNavigate } from 'react-router-dom';
+import { vi } from 'vitest';
+
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    useNavigate: vi.fn(), // Mock do useNavigate
+  };
+});
 
 describe('Navbar', () => {
 
@@ -36,6 +50,31 @@ describe('Navbar', () => {
     expect(partnersLink).toBeInTheDocument();
     expect(companiesLink).toBeInTheDocument();
     expect(logoutButton).toBeInTheDocument();
+  });
+
+  test('chama handleLogout ao clicar no botão de logout', () => {
+    const navigateMock = vi.fn();
+    useNavigate.mockReturnValue(navigateMock);
+
+    // Configura localStorage e cookies
+    localStorage.setItem('user', 'teste');
+    document.cookie = 'user=teste';
+
+    // Renderiza o Navbar dentro de BrowserRouter
+    render(
+      <BrowserRouter>
+        <Navbar />
+      </BrowserRouter>
+    );
+
+    // Seleciona e clica no botão de logout
+    const logoutButton = screen.getByRole('button', { name: /sair/i });
+    fireEvent.click(logoutButton);
+
+    // Verifica se handleLogout funciona conforme esperado
+    expect(localStorage.getItem('user')).toBeNull();
+    expect(document.cookie).not.toContain('user=teste');
+    expect(navigateMock).toHaveBeenCalledWith('/login');
   });
 
 });
