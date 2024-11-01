@@ -47,13 +47,13 @@ O projeto está configurado para rodar em Docker. Para iniciar os serviços, bas
 
 Para executar o aplicativo em sua máquina local, siga os passos abaixo:
 
-1 . No MFE filho (pasta remote), execute:
+1. No MFE filho (pasta remote), execute:
 
 ```
 npm run build && npm run serve
 ```
 
-2 . Em seguida, no MFE pai (pasta host), execute:
+2. Em seguida, no MFE pai (pasta host), execute:
 
 ```
 npm run dev
@@ -61,15 +61,26 @@ npm run dev
 
 ## 🧪 Executando os Testes
 
-Este projeto possui um sistema de testes implementado com o Vitest. Para rodar os testes, siga os passos abaixo:
+Este projeto possui um sistema de testes implementado com o Vitest e Cypress.
 
-1 - Navegue até o diretório "host".
+### Testes Unitários e de Componentes com Vitest
 
-2 - Execute o comando:
+1. Navegue até o diretório "host".
+2. Execute o comando:
+
 ```
 npm run test
 ```
 
+### Testes End-to-End com Cypress
+
+1. Certifique-se de que o servidor está rodando localmente em `http://localhost:5173`.
+2. Navegue até o diretório "host".
+3. No terminal, execute o comando:
+```
+npx cypress open
+```
+3. No Cypress, selecione o teste desejado para execução.
 
 ## 🌐 Acessando o Aplicativo
 
