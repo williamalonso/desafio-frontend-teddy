@@ -10,7 +10,24 @@
 
 Este projeto é um desafio de frontend utilizando a arquitetura de micro-frontends. O objetivo é demonstrar como diferentes partes de uma aplicação podem ser desenvolvidas, implantadas e executadas de forma independente.
 
+## 📋 Requisitos
 
+Este projeto foi desenvolvido como parte de um desafio técnico e inclui as seguintes funcionalidades:
+
+- **Página de Login**: Permite que o usuário digite o nome de usuário e senha. Ao clicar em "Entrar", o sistema redireciona para a página inicial (não é necessária autenticação real).
+- **Funcionalidade "Manter Conectado"**: Se o checkbox "Manter conectado" for marcado, o nome de usuário é salvo no cookie. Caso contrário, é salvo no localStorage.
+- **Persistência de Usuário**: A aplicação busca o nome do usuário no cookie ao acessar a página inicial.
+
+### Funcionalidades das Páginas
+
+- **Página Inicial**: Página com uma descrição sobre o projeto, tecnologias utilizadas e sua finalidade.
+- **Página Partners**: Página que exibe uma tabela de Parceiros, com paginação e inclui opções de cadastro, edição e exclusão.
+- **Página Companies**: Página que exibe uma tabela de Empresas Externas, com paginação e inclui opções de cadastro, edição e exclusão.
+- **Sair**: Redireciona o usuário de volta para a página de login.
+
+### Funcionalidade de Compartilhamento de Dados
+
+- **Compartilhamento de Tabela**: A aplicação permite compartilhar links de páginas específicas de uma tabela. Por exemplo, ao compartilhar um link da página 3 de uma tabela paginada, o destinatário acessará diretamente essa página. Caso o usuário não esteja logado, será redirecionado para a página de login.
 
 ## 🔍 Como Funciona?
 
@@ -24,7 +41,7 @@ Na imagem acima, a área em vermelho foi desenvolvida no diretório "remote", en
 - **Vite**: `^5.4.9`
 - **[vite-plugin-federation](https://github.com/originjs/vite-plugin-federation)**: `^1.3.6` - Plugin para micro-frontends usando Vite.
 - **Vitest**: `^2.1.4`
-
+- **Cypress**: `^13.15.1`
 
 
 ## 🚀 Deploy
