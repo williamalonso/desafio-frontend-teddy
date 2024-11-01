@@ -1,11 +1,9 @@
 // src/components/navbar/Navbar.test.jsx
 import { render, screen, fireEvent  } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom'; // Para simular o roteamento
-import Navbar from './Navbar'; // Importa o componente Navbar
+import { MemoryRouter } from 'react-router-dom';
+import Navbar from './Navbar';
 import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
-
-// Mock do useNavigate do react-router-dom
 import { useNavigate } from 'react-router-dom';
 import { vi } from 'vitest';
 
@@ -52,7 +50,7 @@ describe('Navbar', () => {
     expect(logoutButton).toBeInTheDocument();
   });
 
-  test('chama handleLogout ao clicar no botão de logout', () => {
+  test('calls handleLogout when clicking the logout button', () => {
     const navigateMock = vi.fn();
     useNavigate.mockReturnValue(navigateMock);
 
